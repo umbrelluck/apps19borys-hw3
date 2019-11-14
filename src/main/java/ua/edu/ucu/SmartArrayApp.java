@@ -1,15 +1,17 @@
 package ua.edu.ucu;
 
 import java.util.Arrays;
+
 import ua.edu.ucu.functions.MyComparator;
 import ua.edu.ucu.functions.MyFunction;
 import ua.edu.ucu.functions.MyPredicate;
+import ua.edu.ucu.smartarr.*;
 
 public class SmartArrayApp {
 
     public static Integer[]
-            filterPositiveIntegersSortAndMultiplyBy2(Integer[] integers) {
-                
+    filterPositiveIntegersSortAndMultiplyBy2(Integer[] integers) {
+
         MyPredicate pr = new MyPredicate() {
             @Override
             public boolean test(Object t) {
@@ -49,11 +51,47 @@ public class SmartArrayApp {
     }
 
     public static String[]
-            findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(Student[] students) {
+    findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(Student[] students) {
+        SmartArray studentSmartArray = new BaseArray(students);
+        MyPredicate pr = t -> ((Student) t).getGPA() >= 4 && ((Student) t).getYear() == 2;
+        studentSmartArray = new FilterDecorator(studentSmartArray, pr);
+        studentSmartArray = new DistinctDecorator(studentSmartArray);
 
+        MyComparator cmp = new MyComparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                String nm1 = ((Student) o1).getSurname();
+                String nm2 = ((Student) o2).getSurname();
+
+                int l1 = nm1.length();
+                int l2 = nm2.length();
+                int lmin = Math.min(l1, l2);
+
+                for (int i = 0; i < lmin; i++) {
+                    int str1_ch = nm1.charAt(i);
+                    int str2_ch = nm2.charAt(i);
+
+                    if (str1_ch != str2_ch) {
+                        return str1_ch - str2_ch;
+                    }
+                }
+                if (l1 != l2) {
+                    return l1 - l2;
+                } else {
+                    return 0;
+                }
+            }
+        };
+        studentSmartArray = new SortDecorator(studentSmartArray, cmp);
         // Hint: to convert Object[] to String[] - use the following code
-        //Object[] result = studentSmartArray.toArray();
-        //return Arrays.copyOf(result, result.length, String[].class);
-        return null;
+        Object[] result = new Object[studentSmartArray.size()];
+        int i = 0;
+        for (Object student : studentSmartArray.toArray()) {
+            result[i] =
+                    ((Student) student).getSurname() + " "
+                            + ((Student) student).getName();
+            i++;
+        }
+        return Arrays.copyOf(result, result.length, String[].class);
     }
 }
