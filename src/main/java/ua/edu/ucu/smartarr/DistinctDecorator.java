@@ -1,9 +1,7 @@
 package ua.edu.ucu.smartarr;
 
-import ua.edu.ucu.functions.MyPredicate;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 // Remove duplicates from SmartArray. Use method equals() to compare objects

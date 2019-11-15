@@ -8,7 +8,7 @@ public class BaseArray implements SmartArray {
     private Object[] objs;
 
     public BaseArray(Object[] objs) {
-        this.objs = objs;
+        this.objs = Arrays.copyOf(objs, objs.length);
     }
 
     @Override

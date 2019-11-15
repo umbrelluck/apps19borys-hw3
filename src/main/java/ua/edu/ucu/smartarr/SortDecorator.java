@@ -9,7 +9,6 @@ public class SortDecorator extends SmartArrayDecorator {
 
     public SortDecorator(SmartArray sa, MyComparator cmp) {
         super(sa);
-        Object[] arr = sa.toArray();
         this.smartArray = new BaseArray(insertionSort(sa.toArray(), cmp));
     }
 

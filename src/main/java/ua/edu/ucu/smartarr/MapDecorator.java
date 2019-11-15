@@ -9,11 +9,11 @@ public class MapDecorator extends SmartArrayDecorator {
         super(sa);
 
         Object[] ls = sa.toArray();
-        Object[] new_elems = new Integer[sa.size()];
+        Object[] newElems = new Integer[sa.size()];
         for (int i = 0; i < sa.size(); i++) {
-            new_elems[i] = func.apply(ls[i]);
+            newElems[i] = func.apply(ls[i]);
         }
-        this.smartArray = new BaseArray(new_elems);
+        this.smartArray = new BaseArray(newElems);
     }
 
     @Override
