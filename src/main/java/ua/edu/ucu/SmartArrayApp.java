@@ -11,7 +11,7 @@ import ua.edu.ucu.smartarr.*;
 public class SmartArrayApp {
 
     public static Integer[]
-    filterPositiveIntegersSortAndMultiplyBy2(Integer[] integers) {
+    ftrPositiveIntegersSortAndMultiplyByTwo(Integer[] integers) {
 
         MyPredicate pr = t -> ((Integer) t) > 0;
 
@@ -37,7 +37,7 @@ public class SmartArrayApp {
     }
 
     public static String[]
-    findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(
+    findDistinctStudentNamesFromSecondYearWithGPAgeFourAndOrderedBySurname(
             Student[] students) {
         SmartArray studentSmartArray = new BaseArray(students);
         MyPredicate pr =
@@ -53,11 +53,11 @@ public class SmartArrayApp {
                     , nmA.length())};
 
             for (int i = 0; i < len[2]; i++) {
-                int str1_ch = nmA.charAt(i);
-                int str2_ch = nmB.charAt(i);
+                int strA = nmA.charAt(i);
+                int strB = nmB.charAt(i);
 
-                if (str1_ch != str2_ch) {
-                    return str1_ch - str2_ch;
+                if (strA != strB) {
+                    return strA - strB;
                 }
             }
             if (len[0] != len[1]) {
