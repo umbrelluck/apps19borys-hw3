@@ -53,7 +53,9 @@ public class SmartArrayApp {
     public static String[]
     findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(Student[] students) {
         SmartArray studentSmartArray = new BaseArray(students);
-        MyPredicate pr = t -> ((Student) t).getGPA() >= 4 && ((Student) t).getYear() == 2;
+        MyPredicate pr =
+                t -> ((Student) t).getGPA() >= 4
+                        && ((Student) t).getYear() == 2;
         studentSmartArray = new FilterDecorator(studentSmartArray, pr);
         studentSmartArray = new DistinctDecorator(studentSmartArray);
 

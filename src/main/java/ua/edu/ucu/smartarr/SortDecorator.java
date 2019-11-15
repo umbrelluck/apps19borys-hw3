@@ -18,7 +18,8 @@ public class SortDecorator extends SmartArrayDecorator {
         for (int i = 1; i < newArray.length; i++) {
             Object tmp = newArray[i];
             int j;
-            for (j = i; j > 0 && cmp.compare(newArray[j], newArray[j - 1]) < 1; j--) {
+            for (j = i; j > 0 && cmp.compare(newArray[j],
+                    newArray[j - 1]) < 1; j--) {
                 newArray[j] = newArray[j - 1];
             }
             newArray[j] = tmp;
