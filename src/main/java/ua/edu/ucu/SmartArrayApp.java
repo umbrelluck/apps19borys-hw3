@@ -15,7 +15,7 @@ public class SmartArrayApp {
 
         MyPredicate pr = t -> ((Integer) t) > 0;
 
-        MyComparator cmp = (o1, o2) -> ((Integer) o1) - ((Integer) o2);
+        MyComparator cmp = (oA, oB) -> ((Integer) oA) - ((Integer) oB);
 
         MyFunction func = t -> 2 * ((Integer) t);
 
@@ -46,21 +46,21 @@ public class SmartArrayApp {
         studentSmartArray = new FilterDecorator(studentSmartArray, pr);
         studentSmartArray = new DistinctDecorator(studentSmartArray);
 
-        MyComparator cmp = (o1, o2) -> {
-            String nm1 = ((Student) o1).getSurname();
-            String nm2 = ((Student) o2).getSurname();
-            Integer[] len = {nm1.length(), nm2.length(), Math.min(nm2.length()
-                    , nm1.length())};
+        MyComparator cmp = (oA, oB) -> {
+            String nmA = ((Student) oA).getSurname();
+            String nmB = ((Student) oB).getSurname();
+            int[] len = {nmA.length(), nmB.length(), Math.min(nmB.length()
+                    , nmA.length())};
 
             for (int i = 0; i < len[2]; i++) {
-                int str1_ch = nm1.charAt(i);
-                int str2_ch = nm2.charAt(i);
+                int str1_ch = nmA.charAt(i);
+                int str2_ch = nmB.charAt(i);
 
                 if (str1_ch != str2_ch) {
                     return str1_ch - str2_ch;
                 }
             }
-            if (!len[0].equals(len[1])) {
+            if (len[0] != len[1]) {
                 return len[0] - len[1];
             } else {
                 return 0;
